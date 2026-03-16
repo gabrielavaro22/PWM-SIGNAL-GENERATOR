@@ -1,0 +1,44 @@
+* source PROIECTCAD
+V_V2         -VCC 0 -15V
+R_R3         N65354 N27903 R_R3 16k  
+.model        R_R3 RES R=1 DEV=5%
+X_P1    N28519 N28363 N34705 SCHEMATIC1_P1 
+X_U7         N56026 0 VCC -VCC N27745 LM7171A/NS
+D_D1         N27789 N27903 D1N4448 
+R_R5         VCC N28363 R_R5 33k  
+.model        R_R5 RES R=1 DEV=5%
+D_D2         N28115 N27789 D1N4448 
+R_R2         N56026 N27745 R_R2 13k  
+.model        R_R2 RES R=1 DEV=5%
+R_R4         N27745 N28115 R_R4 1.1k  
+.model        R_R4 RES R=1 DEV=5%
+R_R7         N30840 N56018 R_R7 12k  
+.model        R_R7 RES R=1 DEV=5%
+V_V1         VCC 0 15V
+C_C1         N27789 N27803 C_C1 1n IC=0 
+.model        C_C1 CAP C=1 DEV=10%
+R_R6         N28519 -VCC R_R6 22k  
+.model        R_R6 RES R=1 DEV=5%
+R_R1         N27803 N56026 R_R1 11k  
+.model        R_R1 RES R=1 DEV=5%
+X_P2    N30840 N30576 N28413 SCHEMATIC1_P2 
+X_U8         N27803 N34705 VCC -VCC N56018 LM7171A/NS
+R_R8         0 N30576 R_R8 2.7k  
+.model        R_R8 RES R=1 DEV=5%
+X_U5         0 N27789 VCC -VCC N27803 LM7171A/NS
+X_U13         N28413 OUT VCC -VCC OUT LM7171A/NS
+R_R19         0 OUT R_R19 1k  
+.model        R_R19 RES R=1 DEV=5%
+R_R20         N27745 N65354  1.5k TC=0,0 
+.IC         V(N27789 )=0
+.PARAM  setfu=1 seta=1
+
+.subckt SCHEMATIC1_P1 1 2 t  
+RT_P1         1 t {(10k*(1-{setfu}))+.001}
+RB_P1         t 2 {(10k*{setfu})+.001}
+.ends SCHEMATIC1_P1
+
+.subckt SCHEMATIC1_P2 1 2 t  
+RT_P2         1 t {(10K*(1-{seta}))+.001}
+RB_P2         t 2 {(10K*{seta})+.001}
+.ends SCHEMATIC1_P2

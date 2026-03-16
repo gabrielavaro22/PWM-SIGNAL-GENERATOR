@@ -1,0 +1,123 @@
+
+**** 05/16/25 14:08:23 **** PSpice 24.1.0 (23 January 2025) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-trans"  [ d:\facultate\an 2\semestru 2\cad\proiectul meu_pwm\proiectcad-pspicefiles\schematic1\trans.sim ] 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "trans.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of C:\Users\user\AppData\Roaming\SPB_Data\cdssetup\OrCAD_PSpice\24.1.0\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 900u 0 10u 
+.OPTIONS ADVCONV
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source PROIECTCAD
+V_V2         -VCC 0 -15V
+R_R3         N27745 N27903 R_R3 22k  
+.model        R_R3 RES R=1 DEV=5%
+X_P1    N28519 N28363 N34705 SCHEMATIC1_P1 
+X_U7         N56026 0 VCC -VCC N27745 LM7171A/NS
+D_D1         N27789 N27903 D1N4448 
+R_R5         VCC N28363 R_R5 33k  
+.model        R_R5 RES R=1 DEV=5%
+D_D2         N28115 N27789 D1N4448 
+R_R2         N56026 N27745 R_R2 13k  
+.model        R_R2 RES R=1 DEV=5%
+R_R4         N27745 N28115 R_R4 1.1k  
+.model        R_R4 RES R=1 DEV=5%
+R_R7         N30840 N56018 R_R7 12k  
+.model        R_R7 RES R=1 DEV=5%
+V_V1         VCC 0 15V
+C_C1         N27789 N27803 C_C1 1n  
+.model        C_C1 CAP C=1 DEV=10%
+R_R6         N28519 -VCC R_R6 22k  
+.model        R_R6 RES R=1 DEV=5%
+R_R1         N27803 N56026 R_R1 11k  
+.model        R_R1 RES R=1 DEV=5%
+X_P2    N30840 N30576 N28413 SCHEMATIC1_P2 
+X_U8         N27803 N34705 VCC -VCC N56018 LM7171A/NS
+R_R8         0 N30576 R_R8 2.7k  
+.model        R_R8 RES R=1 DEV=5%
+X_U5         0 N27789 VCC -VCC N27803 LM7171A/NS
+D_D4         N59854 N59514 D1N4448 
+R_R11         N59468 N59632 R_R11 22k  
+.model        R_R11 RES R=1 DEV=5%
+R_R12         N59528 N59560 R_R12 11k  
+.model        R_R12 RES R=1 DEV=5%
+R_R16         0 N60134 R_R16 2.7k  
+.model        R_R16 RES R=1 DEV=5%
+R_R14         VCC N60034 R_R14 33k  
+.model        R_R14 RES R=1 DEV=5%
+R_R15         N60128 N60122 R_R15 12k  
+.model        R_R15 RES R=1 DEV=5%
+R_R13         N59468 N59854 R_R13 1.1k  
+.model        R_R13 RES R=1 DEV=5%
+X_U12         N60178 OUT VCC -VCC OUT LM7171A/NS
+V_V3         VCC 0 15V
+R_R17         N60190 -VCC R_R17 22k  
+.model        R_R17 RES R=1 DEV=5%
+R_R18         0 OUT R_R18 1k  
+.model        R_R18 RES R=1 DEV=5%
+D_D3         N59514 N59632 D1N4448 
+X_U11         N59528 N60172 VCC -VCC N60122 LM7171A/NS
+C_C2         N59514 N59528 C_C2 1n  
+.model        C_C2 CAP C=1 DEV=10%
+X_P3    N60128 N60134 N60178 SCHEMATIC1_P3 
+X_P4    N60190 N60034 N60172 SCHEMATIC1_P4 
+V_V4         -VCC 0 -15V
+R_R10         N59560 N59468 R_R10 13k  
+.model        R_R10 RES R=1 DEV=5%
+X_U10         N59560 0 VCC -VCC N59468 LM7171A/NS
+X_U9         0 N59514 VCC -VCC N59528 LM7171A/NS
+X_U6         N61110 OUT VCC N61068 OUT LM7171A/NS
+X_U13         N28413 OUT VCC -VCC OUT LM7171A/NS
+R_R19         0 OUT R_R19 1k  
+.model        R_R19 RES R=1 DEV=5%
+.IC         V(N27789 )=0
+.IC         V(N59514 )=0
+.PARAM  setfu=0 seta=1
+
+.subckt SCHEMATIC1_P1 1 2 t  
+RT_P1         1 t {(10k*(1-{setfu}))+.001}
+RB_P1         t 2 {(10k*{setfu})+.001}
+.ends SCHEMATIC1_P1
+
+.subckt SCHEMATIC1_P2 1 2 t  
+RT_P2         1 t {(10K*(1-{seta}))+.001}
+RB_P2         t 2 {(10K*{seta})+.001}
+.ends SCHEMATIC1_P2
+
+.subckt SCHEMATIC1_P3 1 2 t  
+RT_P3         1 t {(10K*(1-{seta}))+.001}
+RB_P3         t 2 {(10K*{seta})+.001}
+.ends SCHEMATIC1_P3
+
+.subckt SCHEMATIC1_P4 1 2 t  
+RT_P4         1 t {(10k*(1-{setfu}))+.001}
+RB_P4         t 2 {(10k*{setfu})+.001}
+.ends SCHEMATIC1_P4
+
+**** RESUMING trans.cir ****
+.END
+
+ERROR(ORPSIM-15143): Voltage source and/or inductor loop involving V_V3. You may break the loop by adding a series resistance
+
